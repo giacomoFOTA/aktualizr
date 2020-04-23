@@ -37,16 +37,16 @@ class SQLStorage : public SQLStorageBase, public INvStorage {
   void storeTlsCa(const std::string& ca) override;
   void storeTlsCert(const std::string& cert) override;
   void storeTlsPkey(const std::string& pkey) override;
-  bool loadTlsCreds(std::string* ca, std::string* cert, std::string* pkey) override;
+  bool loadTlsCreds(std::string* ca, std::string* cert, std::string* pkey) const override;
   void clearTlsCreds() override;
   bool loadTlsCa(std::string* ca) override;
   bool loadTlsCert(std::string* cert) override;
   bool loadTlsPkey(std::string* pkey) override;
 
   void storeRoot(const std::string& data, Uptane::RepositoryType repo, Uptane::Version version) override;
-  bool loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Version version) override;
+  bool loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Version version) const override;
   void storeNonRoot(const std::string& data, Uptane::RepositoryType repo, Uptane::Role role) override;
-  bool loadNonRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Role role) override;
+  bool loadNonRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Role role) const override;
   void clearNonRootMeta(Uptane::RepositoryType repo) override;
   void clearMetadata() override;
   void storeDelegation(const std::string& data, Uptane::Role role) override;
@@ -99,7 +99,7 @@ class SQLStorage : public SQLStorageBase, public INvStorage {
   bool checkAvailableDiskSpace(uint64_t required_bytes) const override;
 
   std::unique_ptr<StorageTargetWHandle> allocateTargetFile(const Uptane::Target& target) override;
-  std::unique_ptr<StorageTargetRHandle> openTargetFile(const Uptane::Target& target) override;
+  std::unique_ptr<StorageTargetRHandle> openTargetFile(const Uptane::Target& target) const override;
   boost::optional<std::pair<uintmax_t, std::string>> checkTargetFile(const Uptane::Target& target) const override;
   std::vector<Uptane::Target> getTargetFiles() override;
   void removeTargetFile(const std::string& target_name) override;

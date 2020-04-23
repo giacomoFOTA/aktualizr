@@ -12,16 +12,16 @@ class FSStorageRead {
   bool loadPrimaryPublic(std::string* public_key);
   bool loadPrimaryPrivate(std::string* private_key);
 
-  bool loadTlsCreds(std::string* ca, std::string* cert, std::string* pkey);
+  bool loadTlsCreds(std::string* ca, std::string* cert, std::string* pkey) const;
   bool loadTlsCa(std::string* ca);
   bool loadTlsCert(std::string* cert);
   bool loadTlsPkey(std::string* pkey);
 
-  bool loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Version version);
+  bool loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Version version) const;
   bool loadLatestRoot(std::string* data, Uptane::RepositoryType repo) {
     return loadRoot(data, repo, Uptane::Version());
   };
-  bool loadNonRoot(std::string* data, Uptane::RepositoryType repo, const Uptane::Role& role);
+  bool loadNonRoot(std::string* data, Uptane::RepositoryType repo, const Uptane::Role& role) const;
 
   bool loadDeviceId(std::string* device_id);
   bool loadEcuSerials(EcuSerials* serials);

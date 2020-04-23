@@ -65,7 +65,7 @@ bool FSStorageRead::loadPrimaryPrivate(std::string* private_key) {
   return true;
 }
 
-bool FSStorageRead::loadTlsCreds(std::string* ca, std::string* cert, std::string* pkey) {
+bool FSStorageRead::loadTlsCreds(std::string* ca, std::string* cert, std::string* pkey) const {
   boost::filesystem::path ca_path(config_.tls_cacert_path.get(config_.path));
   boost::filesystem::path cert_path(config_.tls_clientcert_path.get(config_.path));
   boost::filesystem::path pkey_path(config_.tls_pkey_path.get(config_.path));
@@ -105,7 +105,7 @@ bool FSStorageRead::loadTlsCert(std::string* cert) { return loadTlsCommon(cert, 
 
 bool FSStorageRead::loadTlsPkey(std::string* pkey) { return loadTlsCommon(pkey, config_.tls_pkey_path); }
 
-bool FSStorageRead::loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Version version) {
+bool FSStorageRead::loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Version version) const {
   boost::filesystem::path metafile;
   switch (repo) {
     case (Uptane::RepositoryType::Director()):
@@ -141,7 +141,7 @@ bool FSStorageRead::loadRoot(std::string* data, Uptane::RepositoryType repo, Upt
   return true;
 }
 
-bool FSStorageRead::loadNonRoot(std::string* data, Uptane::RepositoryType repo, const Uptane::Role& role) {
+bool FSStorageRead::loadNonRoot(std::string* data, Uptane::RepositoryType repo, const Uptane::Role& role) const {
   boost::filesystem::path metafile;
   switch (repo) {
     case (Uptane::RepositoryType::Director()):

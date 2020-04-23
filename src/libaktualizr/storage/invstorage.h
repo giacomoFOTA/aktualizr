@@ -144,19 +144,19 @@ class INvStorage {
   virtual void storeTlsCa(const std::string& ca) = 0;
   virtual void storeTlsCert(const std::string& cert) = 0;
   virtual void storeTlsPkey(const std::string& pkey) = 0;
-  virtual bool loadTlsCreds(std::string* ca, std::string* cert, std::string* pkey) = 0;
+  virtual bool loadTlsCreds(std::string* ca, std::string* cert, std::string* pkey) const = 0;
   virtual bool loadTlsCa(std::string* ca) = 0;
   virtual bool loadTlsCert(std::string* cert) = 0;
   virtual bool loadTlsPkey(std::string* cert) = 0;
   virtual void clearTlsCreds() = 0;
 
   virtual void storeRoot(const std::string& data, Uptane::RepositoryType repo, Uptane::Version version) = 0;
-  virtual bool loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Version version) = 0;
-  bool loadLatestRoot(std::string* data, Uptane::RepositoryType repo) {
+  virtual bool loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Version version) const = 0;
+  bool loadLatestRoot(std::string* data, Uptane::RepositoryType repo) const {
     return loadRoot(data, repo, Uptane::Version());
   };
   virtual void storeNonRoot(const std::string& data, Uptane::RepositoryType repo, Uptane::Role role) = 0;
-  virtual bool loadNonRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Role role) = 0;
+  virtual bool loadNonRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Role role) const = 0;
   virtual void clearNonRootMeta(Uptane::RepositoryType repo) = 0;
   virtual void clearMetadata() = 0;
   virtual void storeDelegation(const std::string& data, Uptane::Role role) = 0;
@@ -221,7 +221,7 @@ class INvStorage {
   // Incremental file API
   virtual std::unique_ptr<StorageTargetWHandle> allocateTargetFile(const Uptane::Target& target) = 0;
 
-  virtual std::unique_ptr<StorageTargetRHandle> openTargetFile(const Uptane::Target& target) = 0;
+  virtual std::unique_ptr<StorageTargetRHandle> openTargetFile(const Uptane::Target& target) const = 0;
   virtual std::vector<Uptane::Target> getTargetFiles() = 0;
   virtual void removeTargetFile(const std::string& target_name) = 0;
 

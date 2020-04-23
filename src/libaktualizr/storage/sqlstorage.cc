@@ -386,7 +386,7 @@ void SQLStorage::storeTlsPkey(const std::string& pkey) {
   db.commitTransaction();
 }
 
-bool SQLStorage::loadTlsCreds(std::string* ca, std::string* cert, std::string* pkey) {
+bool SQLStorage::loadTlsCreds(std::string* ca, std::string* cert, std::string* pkey) const {
   SQLite3Guard db = dbConnection();
 
   db.beginTransaction();
@@ -564,7 +564,7 @@ void SQLStorage::storeNonRoot(const std::string& data, Uptane::RepositoryType re
   db.commitTransaction();
 }
 
-bool SQLStorage::loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Version version) {
+bool SQLStorage::loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane::Version version) const {
   SQLite3Guard db = dbConnection();
 
   // version < 0 => latest metadata requested
@@ -613,7 +613,7 @@ bool SQLStorage::loadRoot(std::string* data, Uptane::RepositoryType repo, Uptane
   return true;
 }
 
-bool SQLStorage::loadNonRoot(std::string* data, Uptane::RepositoryType repo, const Uptane::Role role) {
+bool SQLStorage::loadNonRoot(std::string* data, Uptane::RepositoryType repo, const Uptane::Role role) const {
   SQLite3Guard db = dbConnection();
 
   auto statement = db.prepareStatement<int, int>(
@@ -1860,7 +1860,7 @@ class SQLTargetRHandle : public StorageTargetRHandle {
   std::ifstream stream_;
 };
 
-std::unique_ptr<StorageTargetRHandle> SQLStorage::openTargetFile(const Uptane::Target& target) {
+std::unique_ptr<StorageTargetRHandle> SQLStorage::openTargetFile(const Uptane::Target& target) const {
   return std_::make_unique<SQLTargetRHandle>(*this, target);
 }
 
