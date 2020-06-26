@@ -12,6 +12,7 @@
 #include "utilities/fault_injection.h"
 #include "utilities/utils.h"
 
+namespace Primary{
 
 bool custom_install(const std::string & data) {
   std::cout << "Data length: " << data.length() << std::endl;
@@ -90,4 +91,6 @@ bool CustomSecondary::getFirmwareInfo(Uptane::InstalledImageInfo& firmware_info)
 
   return true;
 }
+
+} //namespace Primary
 

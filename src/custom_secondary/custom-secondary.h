@@ -6,6 +6,8 @@
 #include "managedsecondary.h"
 #include "utilities/types.h"
 
+namespace Primary{
+	
 class CustomSecondaryConfig : public Primary::ManagedSecondaryConfig {
   public:
     CustomSecondaryConfig() : ManagedSecondaryConfig("custom") {}
@@ -44,4 +46,5 @@ class CustomSecondary : public Primary::ManagedSecondary {
     bool storeFirmware(const std::string& target_name, const std::string& content) override;
 };
 
+} //namespace Primary
 #endif  // CUSTOM_SECONDARY_H_
