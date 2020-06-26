@@ -75,7 +75,7 @@ class JsonConfigParser : public SecondaryConfigParser {
   using SecondaryConfigFactoryRegistry = std::unordered_map<std::string, std::function<void(Configs&, Json::Value&)>>;
 
   SecondaryConfigFactoryRegistry sec_cfg_factory_registry_ = {
-      {IPSecondariesConfig::Type, createIPSecondariesCfg}, {VirtualSecondaryConfig::Type, createVirtualSecondariesCfg}, {CustomSecondaryConfig::Type, createCustomSecondariesCfg},
+      {IPSecondariesConfig::Type, createIPSecondariesCfg}, {VirtualSecondaryConfig::Type, createVirtualSecondariesCfg}, {CustomSecondaryConfig::Type, createCustomSecondariesCfg}
       // add here factory method for another type of secondary config
   };
 

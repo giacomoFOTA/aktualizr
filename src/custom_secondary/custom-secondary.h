@@ -6,7 +6,7 @@
 #include "managedsecondary.h"
 #include "utilities/types.h"
 
-namespace Primary{
+namespace Primary {
 	
 class CustomSecondaryConfig : public Primary::ManagedSecondaryConfig {
   public:
@@ -35,7 +35,8 @@ class CustomSecondary : public Primary::ManagedSecondary {
 
     //bool sendFirmware(const std::string& data) override;
 
-    std::string Type() const override { return "custom"; }
+    //std::string Type() const override { return "custom"; }
+	std::string Type() const override { return CustomSecondaryConfig::Type; }
     bool ping() const override { return true; }
 
   protected:

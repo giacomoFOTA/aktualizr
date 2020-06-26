@@ -116,8 +116,8 @@ void JsonConfigParser::createVirtualSecondariesCfg(Configs& configs, const Json:
 
 void JsonConfigParser::createCustomSecondariesCfg(Configs& configs, const Json::Value& json_custom_sec_cfg) {
   for (const auto& json_config : json_custom_sec_cfg) {
-	auto custom_config = std::make_shared<CustomSecondaryConfig>(json_config);
-	configs.push_back(custom_config);
+    auto custom_config = std::make_shared<CustomSecondaryConfig>(json_config);
+    configs.push_back(custom_config);
   }
 }
 

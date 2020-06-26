@@ -12,7 +12,7 @@
 #include "utilities/fault_injection.h"
 #include "utilities/utils.h"
 
-namespace Primary{
+namespace Primary {
 
 bool custom_install(const std::string & data) {
   std::cout << "Data length: " << data.length() << std::endl;
