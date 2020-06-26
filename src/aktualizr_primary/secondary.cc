@@ -31,6 +31,11 @@ static SecondaryFactoryRegistry sec_factory_registry = {
        auto virtual_sec_cgf = dynamic_cast<const VirtualSecondaryConfig&>(config);
        return Secondaries({std::make_shared<VirtualSecondary>(virtual_sec_cgf)});
      }},
+	{CustomSecondaryConfig::Type,
+	 [](const SecondaryConfig& config, Aktualizr& /* unused */) {
+		 auto custom_sec_cfg = dynamic_cast<const CustomSecondaryConfig&>(config);
+		 return Secondaries({std::make_shared<CustomSecondary>(custom_sec_cfg)});
+	 }},
     //  {
     //     Add another secondary factory here
     //  }

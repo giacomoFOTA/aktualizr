@@ -7,6 +7,7 @@
 
 #include "primary/secondary_config.h"
 #include "virtualsecondary.h"
+#include "custom-secondary.h"
 
 namespace Primary {
 
@@ -67,13 +68,14 @@ class JsonConfigParser : public SecondaryConfigParser {
  private:
   static void createIPSecondariesCfg(Configs& configs, const Json::Value& json_ip_sec_cfg);
   static void createVirtualSecondariesCfg(Configs& configs, const Json::Value& json_virtual_sec_cfg);
+  static void createCustomSecondariesCfg(Configs& configs, const Json::Value& json_custom_sec_cfg);
   // add here a factory method for another type of secondary config
 
  private:
   using SecondaryConfigFactoryRegistry = std::unordered_map<std::string, std::function<void(Configs&, Json::Value&)>>;
 
   SecondaryConfigFactoryRegistry sec_cfg_factory_registry_ = {
-      {IPSecondariesConfig::Type, createIPSecondariesCfg}, {VirtualSecondaryConfig::Type, createVirtualSecondariesCfg}
+      {IPSecondariesConfig::Type, createIPSecondariesCfg}, {VirtualSecondaryConfig::Type, createVirtualSecondariesCfg}, {CustomSecondaryConfig::Type, createCustomSecondariesCfg},
       // add here factory method for another type of secondary config
   };
 
